@@ -44,48 +44,10 @@ public class SejourService implements ISejourService {
 	
 	
 	@Override
-	public ResponseEntity<Response> add(MultipartFile file, String Sejour)
-			throws JsonParseException, JsonMappingException, Exception {
+	public Sejour add(Sejour Sejour) throws JsonParseException, JsonMappingException, Exception {
 
+		return sejourRepository.save(Sejour);
 
-		
-		
-
-        System.out.println("Ok .............");
-        Sejour s = new ObjectMapper().readValue(Sejour, Sejour.class);
-        boolean isExit = new File(context.getRealPath("/Images/")).exists();
-        if (!isExit)
-        {
-            new File (context.getRealPath("/Images/")).mkdir();
-            System.out.println("mkdir success.............");
-        }
-        String filename = file.getOriginalFilename();
-        String newFileName = FilenameUtils.getBaseName(filename)+"."+FilenameUtils.getExtension(filename);
-        File serverFile = new File (context.getRealPath("/Images/"+File.separator+newFileName));
-        try
-        {
-            System.out.println("Image");
-            FileUtils.writeByteArrayToFile(serverFile,file.getBytes());
-
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-
-
-        s.setImage(newFileName);
-
-        Sejour art = sejourRepository.save(s);
-
-
-
-        if (art != null)
-        {
-            return new ResponseEntity<Response>( HttpStatus.OK);
-        }
-        else
-        {
-            return new ResponseEntity<Response>(HttpStatus.BAD_REQUEST);
-        }
 
 
 	}
@@ -162,5 +124,68 @@ return "sejour non supprimé";
 
 		return four;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public ResponseEntity<Response> addsejour(Sejour Sejour)
+			throws JsonParseException, JsonMappingException, Exception {
+		
+		
+
+
+        Sejour art = sejourRepository.save(Sejour);
+
+
+
+        if (art != null)
+        {
+            return new ResponseEntity<Response>( HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<Response>(HttpStatus.BAD_REQUEST);
+        }
+
+		
+		
+		
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*@Override
+	public ResponseEntity<Response> add(MultipartFile file, String Sejour)
+			throws JsonParseException, JsonMappingException, Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 
 }

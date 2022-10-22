@@ -34,13 +34,13 @@ import com.esprit.microservice.Entity.Sejour;
 
 
 @RestController
+@RequestMapping("/sejour")
 public class HotelRestApi {
 	private String title="hello I'm the Hotel Microservice";
 	
 
 	@Autowired
 	ISejourService sejourService; 
-	
 	
 	
 	
@@ -55,8 +55,8 @@ public class HotelRestApi {
 
 	@PostMapping("/addsejour")
 	@ResponseBody
-	public ResponseEntity<Response>  addsejour(@RequestPart("file") MultipartFile file,@RequestParam("sejour") String s)throws JsonParseException, JsonMappingException, Exception {
-		 return sejourService.add(file,s);
+	public ResponseEntity<Response>  addsejour(@RequestBody Sejour s)throws JsonParseException, JsonMappingException, Exception {
+		 return sejourService.addsejour(s);
 	}
 	
 	
@@ -67,32 +67,27 @@ public class HotelRestApi {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	/*@PostMapping("/add")
+	@PostMapping("/add")
 	@ResponseBody
-	public ResponseEntity<Response>  addHotel(@RequestPart("file") MultipartFile file,@RequestParam("hotel") String s)throws JsonParseException, JsonMappingException, Exception {
-		 return hotelService.add(file,s);
-	}*/
+	public Sejour  addSejour(@RequestBody Sejour s)throws JsonParseException, JsonMappingException, Exception {
+		// return sejourService.add(s);
+		 
+		 Sejour sejour = sejourService.add(s);
+		 return sejour;
+	}
 	
 	
 	
-	/*@PutMapping("/update-Hotel/{id}")
+	
+	
+	
+	
+	
+	@PutMapping("/update-Hotel/{id}")
 	@ResponseBody
-	ResponseEntity<Hotel> updateHotel(@PathVariable("id") int id,@RequestBody Hotel s){
-		return hotelService.updateHotel(id,s);
-	}*/
+	ResponseEntity<Sejour> updateHotel(@PathVariable("id") int id,@RequestBody Sejour s){
+		return sejourService.updateSejour(id,s);
+	}
 	
 	
 	

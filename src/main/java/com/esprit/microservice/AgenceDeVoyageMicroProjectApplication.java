@@ -36,7 +36,7 @@ public class AgenceDeVoyageMicroProjectApplication {
 	
 	 ApplicationRunner init(SejourRepository repository){
 		return args ->{
-			Stream.of("Movenpick","Regency","popopo","bassas","hohoho").forEach(titre ->{
+			Stream.of("Movenpick","Regency","popopo","bassas","hohoho","Aldiana").forEach(titre ->{
 				repository.save(new Sejour(0, titre, null, null, 0, "jjjj"));
 			});
 			repository.findAll().forEach(System.out::println);
@@ -44,7 +44,7 @@ public class AgenceDeVoyageMicroProjectApplication {
 	}
 	
 	
-
+	
 	
 	
 	

@@ -16,8 +16,9 @@ public interface ISejourService {
 	
 	
 	
-	ResponseEntity<Response> add(MultipartFile file, String Sejour)
+	ResponseEntity<Response> addsejour(Sejour Sejour)
 	throws JsonParseException, JsonMappingException, Exception;
+	
 	
 	
 	
@@ -25,5 +26,9 @@ public interface ISejourService {
 	String deletSejour(int id);
 	
 	public List<Sejour> retrieveAllSjours() ;
+
+
+
+	Sejour add(Sejour Sejour) throws JsonParseException, JsonMappingException, Exception;
 
 }
