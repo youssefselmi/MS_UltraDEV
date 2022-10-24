@@ -1,5 +1,8 @@
 package com.esprit.microservice;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Stream;
 
 import org.springframework.boot.ApplicationRunner;
@@ -35,9 +38,12 @@ public class AgenceDeVoyageMicroProjectApplication {
 		
 	
 	 ApplicationRunner init(SejourRepository repository){
+		
+
+		
 		return args ->{
 			Stream.of("Movenpick","Regency","popopo","bassas","hohoho","Aldiana").forEach(titre ->{
-				repository.save(new Sejour(0, titre, null, null, 0, "jjjj"));
+				repository.save(new Sejour(0, titre, null, null, 0, "jjjj",true,"description",5,10,"fkjfffkjlpz"));
 			});
 			repository.findAll().forEach(System.out::println);
 		};

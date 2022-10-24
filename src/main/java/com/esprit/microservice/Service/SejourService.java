@@ -1,6 +1,7 @@
 package com.esprit.microservice.Service;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -48,37 +49,31 @@ public class SejourService implements ISejourService {
 
 		return sejourRepository.save(Sejour);
 
-
-
 	}
 	
 	
+    
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	@Override
-	public ResponseEntity<Sejour> updateSejour(int idSejour, Sejour newHotel) {
+	public ResponseEntity<Sejour> updateSejour(int idSejour, Sejour newSejour) {
+		
+		
 		if (sejourRepository.findById(idSejour).isPresent()) {
 			Sejour existingSejour = sejourRepository.findById(idSejour).get();
-			existingSejour.setTitre(newHotel.getTitre());
-			existingSejour.setImage(newHotel.getImage());
-			existingSejour.setPrix(newHotel.getPrix());	
+			existingSejour.setTitre(newSejour.getTitre());
+			existingSejour.setImage(newSejour.getImage());
+			existingSejour.setPrix(newSejour.getPrix());	
 			existingSejour.setDateArrive(existingSejour.getDateArrive());	
 			existingSejour.setDatedepart(existingSejour.getDateArrive());
+			
+			existingSejour.setAvailability(existingSejour.isAvailability());		
+			existingSejour.setDescription(existingSejour.getDescription());
+			existingSejour.setCurrentCap(existingSejour.getCurrentCap());		
+			existingSejour.setMaxCap(existingSejour.getMaxCap());
+			existingSejour.setClientId(existingSejour.getClientId());
+
+			
 
 
 			 return new ResponseEntity<>(sejourRepository.save(existingSejour), HttpStatus.OK);
@@ -105,23 +100,17 @@ return "sejour non supprimé";
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	@Override
 	public List<Sejour> retrieveAllSjours() {
+		
+		
+		miseajour();
+		
+		
 		List<Sejour> four =(List<Sejour> )sejourRepository.findAll();
 
+		
 		return four;
 	}
 
@@ -166,6 +155,45 @@ return "sejour non supprimé";
 		
 		
 		
+		
+	}
+
+
+
+
+
+	@Override
+	public void miseajour() {
+		
+		
+		
+		List<Sejour> listedessejours =(List<Sejour> )sejourRepository.findAll();
+		
+		Date nowDate = new Date();
+
+		for (Sejour sejour : listedessejours) {
+			
+			if(sejour.getDateArrive()!=null) {
+		if(sejour.getDateArrive().compareTo(nowDate) < 0 ) {
+			
+			deletSejour(sejour.getIdSejour());
+		}
+		
+			}
+		}
+		
+	}
+
+
+
+
+
+	@Override
+	public void miseajour2() {
+		
+		Date nowDate = new Date();
+
+			sejourRepository.deleteByDateArriveGreaterThan(nowDate);
 		
 	}
 

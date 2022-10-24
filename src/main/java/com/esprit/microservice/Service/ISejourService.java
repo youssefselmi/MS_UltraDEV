@@ -13,22 +13,20 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 
 public interface ISejourService {
 	
-	
-	
-	
 	ResponseEntity<Response> addsejour(Sejour Sejour)
 	throws JsonParseException, JsonMappingException, Exception;
-	
-	
-	
 	
 	ResponseEntity<Sejour> updateSejour(int id, Sejour s);
 	String deletSejour(int id);
 	
 	public List<Sejour> retrieveAllSjours() ;
 
-
-
 	Sejour add(Sejour Sejour) throws JsonParseException, JsonMappingException, Exception;
+	
+	void miseajour() ;
+	
+	void miseajour2() ;
+
+
 
 }
