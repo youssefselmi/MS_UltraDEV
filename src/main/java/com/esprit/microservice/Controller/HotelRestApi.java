@@ -60,11 +60,11 @@ public class HotelRestApi {
 	}
 	
 	
-	@DeleteMapping(value="/id")
+	/*@DeleteMapping(value="/id")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> deleteSejour(@PathVariable(value="id") int  id){
 	return new ResponseEntity<>(sejourService.deletSejour(id),HttpStatus.OK);
-	}
+	}*/
 	
 	
 	
@@ -96,13 +96,13 @@ public class HotelRestApi {
 	
 	
 	
-	@RequestMapping("/hello")
+	/*@RequestMapping("/hello")
 	
 	public String sayHello(){
 		
 		System.out.println(title);
 		return title;
-	}
+	}*/
 	
 	/*@DeleteMapping(value="/id", produces= MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)

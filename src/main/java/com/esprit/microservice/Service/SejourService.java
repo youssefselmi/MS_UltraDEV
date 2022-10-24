@@ -90,6 +90,28 @@ public class SejourService implements ISejourService {
 
 	}
 	
+	@Override
+	public ResponseEntity<Response> addsejour(Sejour Sejour)
+			throws JsonParseException, JsonMappingException, Exception {
+		
+		
+
+
+        Sejour art = sejourRepository.save(Sejour);
+
+
+
+        if (art != null)
+        {
+            return new ResponseEntity<Response>( HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<Response>(HttpStatus.BAD_REQUEST);
+        }
+        
+	}
+	
 	
 	
 	

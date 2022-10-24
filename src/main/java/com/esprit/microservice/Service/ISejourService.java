@@ -25,5 +25,6 @@ public interface ISejourService {
 	String deletSejour(int id);
 	
 	public List<Sejour> retrieveAllSjours() ;
-
-}
+	ResponseEntity<Response> addsejour(Sejour Sejour)
+			throws JsonParseException, JsonMappingException, Exception;
+}	
